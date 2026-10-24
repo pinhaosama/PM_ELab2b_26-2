@@ -9,7 +9,7 @@ public class Fisioterapeuta extends Profissional {
     private static final double BONUS_TRATAMENTO = 10.0 / 100.0;
     private static final int TEMPO_BONUS = 60;
 
-    private List<Tratamento> tratamentos;
+    private final List<Tratamento> tratamentos;
 
     public Fisioterapeuta(String nome, String registro) {
         super(nome, registro);
@@ -21,8 +21,17 @@ public class Fisioterapeuta extends Profissional {
      * há no máximo TEMPO_BONUS dias (diasAposFinalizacao entre 0 e TEMPO_BONUS, inclusive).
      */
     private double valorBonus() {
-        // TODO: percorrer tratamentos e acumular o bônus dos elegíveis
-        return 0.0;
+
+        double valor = 0d;
+
+        for(Tratamento trat : tratamentos) {
+            if(trat.diasAposFinalizacao() <= TEMPO_BONUS && trat.diasAposFinalizacao() >= 0) {
+                valor += BONUS_TRATAMENTO * SALARIO_FISIO;
+            }
+        }
+
+        // DONE: percorrer tratamentos e acumular o bônus dos elegíveis
+        return valor;
     }
 
     /**
@@ -45,8 +54,15 @@ public class Fisioterapeuta extends Profissional {
      */
     @Override
     public double registrarPagamento() {
-        // TODO: calcular total, armazenar em ultimoPagamento e devolver
-        return 0.0;
+
+        double total = 0d;
+        total += SALARIO_FISIO;
+        total += valorBonus();
+
+        this.ultimoPagamento = total;
+
+        // DONE: calcular total, armazenar em ultimoPagamento e devolver
+        return total;
     }
 
     @Override

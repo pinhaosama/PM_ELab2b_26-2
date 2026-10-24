@@ -5,9 +5,9 @@ import java.time.temporal.ChronoUnit;
  * Tratamento acompanhado por um fisioterapeuta.
  */
 public class Tratamento {
-    private LocalDate iniciadoEm;
+    private final LocalDate iniciadoEm;
     private LocalDate finalizadoEm;
-    private String nome;
+    private final String nome;
 
     public Tratamento(String nome, LocalDate dataInicio) {
         this.nome = nome;
@@ -29,8 +29,14 @@ public class Tratamento {
      * @return -1 se o tratamento ainda não foi finalizado
      */
     public int diasAposFinalizacao() {
-        // TODO: se finalizadoEm == null, devolver -1; senão, dias entre finalizadoEm e LocalDate.now()
-        return 0;
+
+        if(this.finalizadoEm == null) return -1;
+
+        int dias = finalizadoEm.getDayOfYear() - iniciadoEm.getDayOfYear();
+
+        return dias;
+
+        // DONE: se finalizadoEm == null, devolver -1; senão, dias entre finalizadoEm e LocalDate.now()
     }
 
     public String getNome() {

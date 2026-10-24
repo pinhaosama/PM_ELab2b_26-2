@@ -4,8 +4,8 @@ import java.util.Objects;
  * Profissional da Xulambs Fit. Classe abstrata da hierarquia de remuneração.
  */
 public abstract class Profissional {
-    private String nome;
-    private String registro;
+    private final String nome;
+    private final String registro;
     protected double ultimoPagamento;
 
     protected Profissional(String nome, String registro) {

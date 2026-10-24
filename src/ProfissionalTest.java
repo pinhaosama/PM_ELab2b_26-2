@@ -1,6 +1,7 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 /**
  * Escolha Personal ou Fisioterapeuta e complete 2 testes.
@@ -8,17 +9,27 @@ import org.junit.jupiter.api.Test;
  */
 public class ProfissionalTest {
 
-    @Test
-    void exemploEstruturaAaa() {
+    @Test 
+    public void adicionaMaisQueOMaximoDeAulasAvulsas() {
         // Arrange
         Personal personal = new Personal("Ana", "P001");
         // Act — troque/complete conforme a classe escolhida
-        double aulas = personal.addAulaAvulsa(1.0);
+        double aulas = personal.addAulaAvulsa(40.0);
         // Assert
-        assertEquals(0.0, aulas, 0.001,
-                "este exemplo só ilustra AAA; substitua pelos seus 2 testes");
+        assertEquals("verifica se as aulas avulsas são adicionadas corretamente se adicionadas mais de 30", 30, aulas, 0.001);
+    }
+
+    @Test
+    public void testaPagamentoRecebidoComSucesso() {
+        // Arrange
+        Personal ana = new Personal("Ana", "P001");
+        // Act — troque/complete conforme a classe escolhida
+        ana.addAulaAvulsa(23);
+        double total = ana.registrarPagamento();
+        // Assert
+        assertEquals("verifica se o pagamento é registrado corretamente", 5017.35, total, 0.001);
     }
 
     // TODO: criar 2 testes unitários (AAA + mensagem na asserção)
-    // TODO: um deles deve testar registrarPagamento
+    // DONE: um deles deve testar registrarPagamento
 }
